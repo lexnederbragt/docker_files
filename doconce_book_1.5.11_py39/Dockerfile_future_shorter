@@ -1,0 +1,56 @@
+FROM lexnederbragt/doconce_book:1.5.11_py39
+
+RUN apt-get update && \
+    apt-get install -qq\
+    sudo\
+    mercurial\
+    git\
+    subversion\
+    wget\
+    apt-utils\
+    bzip2
+
+RUN apt-get install -qq\
+    imagemagick\
+    netpbm\
+    mjpegtools\
+    pdftk\
+    giftrans\
+    gv\
+    evince\
+    smpeg-plaympeg\
+    mplayer\
+    totem\
+    libav-tools\
+    ispell\
+    pandoc\
+    python-pip\
+    idle\
+    python-dev\
+    python-pdftools
+
+RUN apt-get install -qq\
+    texinfo\
+    texlive\
+    texlive-base\
+    texlive-binaries\
+    texlive-extra-utils\
+    texlive-generic-extra\
+    texlive-latex-extra\
+    texlive-latex-recommended\
+    texlive-math-extra\
+    texlive-font-utils\
+    texlive-humanities\
+    texlive-xetex\
+    auctex\
+    latexdiff\
+    fonts-tlwg-kinnari\
+    ttf-ubuntu-font-family
+
+RUN apt-get -qq install locales
+RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && locale-gen
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
+
+RUN apt-get -qq install fonts-noto

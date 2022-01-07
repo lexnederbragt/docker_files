@@ -1,0 +1,16 @@
+name: doconce
+channels:
+  - defaults
+dependencies:
+  - jupyter_client=6
+  - notebook
+  - requests
+  - pip
+  - python==3.9
+  - pandas
+  - matplotlib
+  - scipy
+  - regex
+  - pip:
+    - publish-doconce
+    - doconce==1.5.12
