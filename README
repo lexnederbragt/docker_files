@@ -1,0 +1,48 @@
+* Images with doconce and some Python packages:
+  - folder: doconce_1.5.XX_py39
+  - image: doconce:1.5.XX_py39
+* Images with doconce, some Python packages and tools needed to compile the BIOS1100 book:
+  - folder: doconce_book_1.5.11_py39
+  - image: doconce_book:1.5.11_py39
+
+-----
+
+List containers
+
+$ docker container ls
+
+List images
+
+$ docker image ls
+
+Turn a docker file into a container:
+
+$ cd <folder_with_dockerfile>
+
+$ docker build -t lexnederbragt/doconce:tag_of_container .
+
+test it out, for example using lexnederbragt/doconce:1.5.11_py39
+
+$ docker run -v $(pwd):/app -t lexnederbragt/doconce:1.5.11_py39 /bin/bash -c "source activate doconce && doconce --version"
+
+Note that the current directory (from where the contained is started)
+is mounted as /app inside the container
+
+Push to dockerhub:
+
+$ docker login
+$ docker push lexnederbragt/doconce:tag_of_container
+
+--------------
+TIPS keep stuff smaller:
+
+1) git clone specific branch and tag only
+As per https://www.techiedelight.com/clone-specific-tag-with-git/
+
+If you only need the specific tag, you can pass --single-branch flag which prevent fetching all the branches in the cloned repository. With the --single-branch flag, only the branch/tag specified by the --branch option is cloned.
+
+$ git clone -b <tagname> --single-branch <repository> .
+
+Alternatively, you can specify the --depth option which limits the number of commits to be downloaded to the specified depth. It implies --single-branch by default.
+
+$ git clone -b <tagname> --depth 1 <repository> .
