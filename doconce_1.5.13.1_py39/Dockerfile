@@ -25,6 +25,8 @@ RUN sudo apt-get install -qq\
 RUN wget -q https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh &&\
     bash miniconda.sh -b -p /root/miniconda
 
+RUN sudo locale-gen nb_NO.UTF-8; sudo update-locale
+
 ENV PATH="/root/miniconda/bin:$PATH"
 
 RUN conda config --set always_yes yes --set changeps1 no && \
@@ -33,10 +35,10 @@ RUN conda config --set always_yes yes --set changeps1 no && \
 
 COPY environment.yml .
 
+# generate conda environment
 RUN /bin/bash -c "conda env create --name doconce -f environment.yml"
 
-# add bash kernel
-# cannot use `conda activate`, need to use `source activate`
+# add bash kernel for Jupyter
 RUN /bin/bash -c "source activate doconce && \
     pip install bash_kernel && \
     python -m bash_kernel.install"

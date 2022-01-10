@@ -12,6 +12,7 @@ RUN apt-get update && \
     pandoc \
     ispell \
     locales \
+    python-pip \
     build-essential
 
 # pdflatex
@@ -23,6 +24,8 @@ RUN sudo apt-get install -qq\
 
 RUN wget -q https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh &&\
     bash miniconda.sh -b -p /root/miniconda
+
+RUN sudo locale-gen nb_NO.UTF-8; sudo update-locale
 
 ENV PATH="/root/miniconda/bin:$PATH"
 
