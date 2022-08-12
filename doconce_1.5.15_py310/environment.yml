@@ -1,0 +1,19 @@
+name: doconce
+channels:
+  - defaults
+dependencies:
+  - notebook
+  - requests
+  - pip
+  - python==3.10
+  - pandas
+  - matplotlib
+  - scipy
+  - regex
+  - pip:
+    - doconce==1.5.15
+    - publish-doconce
+    - sphinx
+    - sphinx_bootstrap_theme
+    - pytest
+    - bash_kernel
